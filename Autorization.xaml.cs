@@ -23,5 +23,15 @@ namespace KitchenUtensilsStore
         {
             InitializeComponent();
         }
+
+        private void Vhod_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void VhodGost_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

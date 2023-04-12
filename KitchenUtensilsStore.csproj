@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +64,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BDKitchenUtensilsStore.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Maker.cs">
+      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tovar.cs">
+      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Type.cs">
+      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vendor.cs">
+      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+    </Compile>
     <Page Include="Autorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -69,6 +101,16 @@
     </Compile>
     <Compile Include="Autorization.xaml.cs">
       <DependentUpon>Autorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BDKitchenUtensilsStore.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDKitchenUtensilsStore.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDKitchenUtensilsStore.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
     </Compile>
     <Compile Include="KitchenUtensilsStoreWindow.xaml.cs">
       <DependentUpon>KitchenUtensilsStoreWindow.xaml</DependentUpon>
@@ -93,6 +135,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="BDKitchenUtensilsStore.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BDKitchenUtensilsStore.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BDKitchenUtensilsStore.edmx.diagram">
+      <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,6 +150,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BDKitchenUtensilsStore.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
+      <LastGenOutput>BDKitchenUtensilsStore.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BDKitchenUtensilsStore.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
+      <LastGenOutput>BDKitchenUtensilsStore.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

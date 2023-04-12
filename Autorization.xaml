@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KitchenUtensilsStore"
         mc:Ignorable="d"
-        Title="Autorization" Height="450" Width="400">
-    <Grid>
-        
+        Title="Авторизация" MinHeight="450" MinWidth="400">
+    <Grid HorizontalAlignment="Center" Width="760">
+
+        <TextBlock Margin="0,33,0,0" TextWrapping="Wrap" Text="Авторизация" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="36" Height="53" HorizontalAlignment="Left" Width="760" TextAlignment="Center"/>
+        <TextBox Name="Login" HorizontalAlignment="Left" Height="34" Margin="151,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="439" FontFamily="Comic Sans MS" FontSize="22"/>
+        <TextBox Name="Passworc" HorizontalAlignment="Left" Height="34" Margin="151,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="439" FontFamily="Comic Sans MS" FontSize="22" RenderTransformOrigin="4.347,0.14"/>
+        <Button Name="Vhod" Content="Войти" HorizontalAlignment="Right" Height="49" Margin="0,230,224,0" VerticalAlignment="Top" Width="326" FontFamily="Comic Sans MS" FontSize="22" Background="#FF68FF00" Click="Vhod_Click"/>
+        <Button Name="VhodGost" Content="Войти как гасть" HorizontalAlignment="Left" Margin="210,304,0,0" VerticalAlignment="Top" Width="326" FontFamily="Comic Sans MS" FontSize="22" Background="#FF68FF00" Click="VhodGost_Click" Height="35"/>
+
     </Grid>
 </Window>
