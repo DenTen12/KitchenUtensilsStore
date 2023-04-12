@@ -24,11 +24,14 @@ namespace KitchenUtensilsStore
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Кнопка проверки Логина и Пароля для Авторицации
+        /// </summary>
         private void Vhod_Click(object sender, RoutedEventArgs e)
         {
             var login = TextBoxLogin.Text;
             var password = TextBoxPassworc.Text;
-            var bd = new KitchenUtensilsStoreBD();
+            var bd = new KitchenUtensilsStoreDb();
             var user = bd.User.Where(w => w.Login == login && w.Password == password).FirstOrDefault();
             if (user != null)
             {
@@ -38,6 +41,9 @@ namespace KitchenUtensilsStore
             else MessageBox.Show("Не верный Логин или Пароль!");
         }
 
+        /// <summary>
+        /// Кнопка входа как гость
+        /// </summary>
         private void VhodGost_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();

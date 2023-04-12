@@ -65,34 +65,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BDKitchenUtensilsStore.cs">
+    <Compile Include="KitchenUtensilsStoreBD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+      <DependentUpon>KitchenUtensilsStoreBD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KitchenUtensilsStoreBD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KitchenUtensilsStoreBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KitchenUtensilsStoreBD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KitchenUtensilsStoreBD.edmx</DependentUpon>
     </Compile>
     <Compile Include="KitchenUtensilsStorePage.xaml.cs">
       <DependentUpon>KitchenUtensilsStorePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Maker.cs">
-      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+      <DependentUpon>KitchenUtensilsStoreBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
-      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+      <DependentUpon>KitchenUtensilsStoreBD.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+      <DependentUpon>KitchenUtensilsStoreBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Tovar.cs">
-      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+      <DependentUpon>KitchenUtensilsStoreBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Type.cs">
-      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+      <DependentUpon>KitchenUtensilsStoreBD.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+      <DependentUpon>KitchenUtensilsStoreBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Vendor.cs">
-      <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
+      <DependentUpon>KitchenUtensilsStoreBD.tt</DependentUpon>
     </Compile>
     <Page Include="Autorization.xaml">
       <SubType>Designer</SubType>
@@ -112,16 +122,6 @@
     </Compile>
     <Compile Include="Autorization.xaml.cs">
       <DependentUpon>Autorization.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BDKitchenUtensilsStore.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDKitchenUtensilsStore.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BDKitchenUtensilsStore.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
     </Compile>
     <Compile Include="KitchenUtensilsStoreWindow.xaml.cs">
       <DependentUpon>KitchenUtensilsStoreWindow.xaml</DependentUpon>
@@ -146,12 +146,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="BDKitchenUtensilsStore.edmx">
+    <EntityDeploy Include="KitchenUtensilsStoreBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BDKitchenUtensilsStore.Designer.cs</LastGenOutput>
+      <LastGenOutput>KitchenUtensilsStoreBD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BDKitchenUtensilsStore.edmx.diagram">
-      <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
+    <None Include="KitchenUtensilsStoreBD.edmx.diagram">
+      <DependentUpon>KitchenUtensilsStoreBD.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -166,16 +166,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BDKitchenUtensilsStore.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
-      <LastGenOutput>BDKitchenUtensilsStore.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="BDKitchenUtensilsStore.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
-      <LastGenOutput>BDKitchenUtensilsStore.cs</LastGenOutput>
-    </Content>
     <Resource Include="Image\picture.jpg" />
     <Resource Include="Image\T793T4.jpg" />
     <Resource Include="Image\А112Т4.jpg" />
@@ -187,6 +177,18 @@
     <Resource Include="Image\H384H3.jpg" />
     <Resource Include="Image\K437E6.jpg" />
     <Resource Include="Image\R836H6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KitchenUtensilsStoreBD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KitchenUtensilsStoreBD.edmx</DependentUpon>
+      <LastGenOutput>KitchenUtensilsStoreBD.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="KitchenUtensilsStoreBD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KitchenUtensilsStoreBD.edmx</DependentUpon>
+      <LastGenOutput>KitchenUtensilsStoreBD.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

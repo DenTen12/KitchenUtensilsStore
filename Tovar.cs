@@ -18,14 +18,18 @@ namespace KitchenUtensilsStore
         public string Articul { get; set; }
         public string Name { get; set; }
         public string Ed { get; set; }
-        public Nullable<decimal> Sum { get; set; }
-        public Nullable<int> MaxRebate { get; set; }
-        public Nullable<int> TovarMaker { get; set; }
-        public Nullable<int> TovarVendor { get; set; }
-        public Nullable<int> TovarType { get; set; }
-        public Nullable<decimal> Rebate { get; set; }
-        public Nullable<int> Count { get; set; }
+        public decimal Sum { get; set; }
+        public int MaxRebate { get; set; }
+        public int TovarMaker { get; set; }
+        public int TovarVendor { get; set; }
+        public int TovarType { get; set; }
+        public decimal Rebate { get; set; }
+        public int Count { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
+    
+        public virtual Maker Maker { get; set; }
+        public virtual Type Type { get; set; }
+        public virtual Vendor Vendor { get; set; }
     }
 }

@@ -13,19 +13,21 @@ namespace KitchenUtensilsStore
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KitchenUtensilsStoreBD : DbContext
+    public partial class KitchenUtensilsStoreDb : DbContext
     {
-        private static KitchenUtensilsStoreBD _context;
+        private static KitchenUtensilsStoreDb _context;
 
 
-        internal static KitchenUtensilsStoreBD GetContext()
-        { if (_context == null)
-                _context = new KitchenUtensilsStoreBD();
+        internal static KitchenUtensilsStoreDb GetContext()
+        {
+            if (_context == null)
+                _context = new KitchenUtensilsStoreDb();
             return _context;
         }
 
-        public KitchenUtensilsStoreBD()
-            : base("name=KitchenUtensilsStoreBD")
+
+        public KitchenUtensilsStoreDb()
+            : base("name=KitchenUtensilsStoreDb")
         {
         }
     

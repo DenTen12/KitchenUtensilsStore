@@ -25,5 +25,11 @@ namespace KitchenUtensilsStore
             InitializeComponent();
             MainFrame.Content = new KitchenUtensilsStorePage();
         }
+
+        private void CloseWin_Click(object sender, RoutedEventArgs e)
+        {
+            new Autorization().Show();
+            this.Close();
+        }
     }
 }

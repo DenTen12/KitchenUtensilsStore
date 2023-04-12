@@ -14,7 +14,16 @@ namespace KitchenUtensilsStore
     
     public partial class Maker
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Maker()
+        {
+            this.Tovar = new HashSet<Tovar>();
+        }
+    
         public int ID_Maker { get; set; }
         public string NameMaker { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tovar> Tovar { get; set; }
     }
 }

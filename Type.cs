@@ -14,7 +14,16 @@ namespace KitchenUtensilsStore
     
     public partial class Type
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Type()
+        {
+            this.Tovar = new HashSet<Tovar>();
+        }
+    
         public int ID_Type { get; set; }
         public string NameType { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tovar> Tovar { get; set; }
     }
 }

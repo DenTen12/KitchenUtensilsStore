@@ -20,6 +20,8 @@ namespace KitchenUtensilsStore
         public string Otchot { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public Nullable<int> UserRole { get; set; }
+        public int UserRole { get; set; }
+    
+        public virtual Role Role { get; set; }
     }
 }

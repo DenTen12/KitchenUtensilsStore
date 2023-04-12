@@ -21,17 +21,11 @@ namespace KitchenUtensilsStore
     /// </summary>
     public partial class KitchenUtensilsStorePage : Page
     {
-        KitchenUtensilsStoreBD db = new KitchenUtensilsStoreBD();
+        KitchenUtensilsStoreDb db = new KitchenUtensilsStoreDb();
 
         public KitchenUtensilsStorePage()
         {
             InitializeComponent();
-            foreach (var y in KitchenUtensilsStoreBD.GetContext().Tovar.ToList())
-            {
-
-                ListData.Items.Add(y);
-
-            }
             ViewPages(0);
         }
         /// <summary>
@@ -52,9 +46,9 @@ namespace KitchenUtensilsStore
                             a.Description,
                             a.Rebate,
                             producter = b.NameVendor,
-                            BackgroundSourse = a.Rebate > 15 ? "#7fff00" : "Transparent",
+                            BackgroundSourse = a.Rebate > 14 ? "#7fff00" : "Transparent",
                             a.Sum,
-                            DiscondedPrice = a.Rebate == 0 ? "" : Math.Round(Convert.ToDouble(a.Sum * (100 - a.Rebate) / 100), 3).ToString(),
+                            DiscondedPrice = a.Rebate == 0 ? "" : Math.Round((a.Sum * (100 - a.Rebate) / 100), 3).ToString(),
                             TextDecorations = a.Rebate != 0 ? "Strikethrough" : "None",
                             Width = ((Panel)Application.Current.MainWindow.Content).ActualWidth - 50,
                         }).ToList();
@@ -77,7 +71,7 @@ namespace KitchenUtensilsStore
                 {
                     MessageBox.Show("Записи не найдены", "Внимение!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
-
+           
         }
 
         /// <summary>
@@ -85,13 +79,21 @@ namespace KitchenUtensilsStore
         /// </summary>
         private void ComboBoxFiltracia_DropDownClosed(object sender, EventArgs e)
         {
-            var list = KitchenUtensilsStoreBD.GetContext().Tovar.ToList();
+            var list = KitchenUtensilsStoreDb.GetContext().Tovar.ToList();
             if (ComboBoxFiltracia.Text != null)
                 switch (ComboBoxFiltracia.Text)
                 {
+                    case "Все  диапазоны":
+                        list = list.Where(w => w.Rebate >= 0 && w.Rebate <= Convert.ToDecimal(15)).ToList();
+                        ListData.Items.Clear();
+                        for (int i = 0; i < list.Count(); i++)
+                            ListData.Items.Add(list[i]);
+                        if (list == null)
+                            MessageBox.Show("Записи не найдены", "Внимение!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+
                     case "0-9,99%":
-                        list = list.Where(w => w.Rebate >= 0 && w.Rebate
-                        <= Convert.ToDecimal(9.99)).ToList();
+                        list = list.Where(w => w.Rebate >= 0 && w.Rebate <= Convert.ToDecimal(9.99)).ToList();
                         ListData.Items.Clear();
                         for (int i = 0; i < list.Count(); i++)
                             ListData.Items.Add(list[i]);
@@ -100,8 +102,7 @@ namespace KitchenUtensilsStore
                         break;
 
                     case "10-14,99%":
-                        list = list.Where(w => w.Rebate >= 10 && w.Rebate
-                            <= Convert.ToDecimal(14.99)).ToList();
+                        list = list.Where(w => w.Rebate >= 10 && w.Rebate <= Convert.ToDecimal(14.99)).ToList();
                         ListData.Items.Clear();
                         for (int i = 0; i < list.Count(); i++)
                             ListData.Items.Add(list[i]);
@@ -111,17 +112,13 @@ namespace KitchenUtensilsStore
                     case "15% и более":
                         list = list.Where(w => w.Rebate >= 15).ToList();
                         ListData.Items.Clear();
-                        for (int i = 0; i
-                                < list.Count(); i++)
+                        for (int i = 0; i < list.Count(); i++)
                             ListData.Items.Add(list[i]);
                         if (list == null)
                             MessageBox.Show("Записи не найдены", "Внимение!", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
-                    case "Все  диапазоны":
-                        ListData.Items.Clear();
-                        for (int i = 0; i < 14; i++)
-                            ListData.Items.Add(list[i]);
-                        break;
+
+                    
                 }
         }
 
@@ -152,11 +149,11 @@ namespace KitchenUtensilsStore
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
             ListData.Items.Clear();
-            foreach (var y in KitchenUtensilsStoreBD.GetContext().Tovar.ToList())
+            foreach (var y in KitchenUtensilsStoreDb.GetContext().Tovar.ToList())
             {
 
                 ListData.Items.Add(y);
-
+                
             }
         }
     }

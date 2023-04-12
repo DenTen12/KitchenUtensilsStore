@@ -33,18 +33,18 @@
           <Key>
             <PropertyRef Name="ID_Tovar" />
           </Key>
-          <Property Name="ID_Tovar" Type="int" Nullable="false" />
-          <Property Name="Articul" Type="varchar" MaxLength="255" />
-          <Property Name="Name" Type="varchar" MaxLength="255" />
-          <Property Name="Ed" Type="varchar" MaxLength="255" />
-          <Property Name="Sum" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="MaxRebate" Type="int" />
-          <Property Name="TovarMaker" Type="int" />
-          <Property Name="TovarVendor" Type="int" />
-          <Property Name="TovarType" Type="int" />
-          <Property Name="Rebate" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Count" Type="int" />
-          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="ID_Tovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Articul" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ed" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Sum" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MaxRebate" Type="int" Nullable="false" />
+          <Property Name="TovarMaker" Type="int" Nullable="false" />
+          <Property Name="TovarVendor" Type="int" Nullable="false" />
+          <Property Name="TovarType" Type="int" Nullable="false" />
+          <Property Name="Rebate" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Type">
@@ -58,13 +58,13 @@
           <Key>
             <PropertyRef Name="ID_User" />
           </Key>
-          <Property Name="ID_User" Type="int" Nullable="false" />
-          <Property Name="Familia" Type="varchar" MaxLength="255" />
+          <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familia" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Ima" Type="varchar" MaxLength="255" />
-          <Property Name="Otchot" Type="varchar" MaxLength="255" />
-          <Property Name="Login" Type="varchar" MaxLength="255" />
+          <Property Name="Otchot" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="255" />
-          <Property Name="UserRole" Type="int" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -73,6 +73,54 @@
           <Property Name="ID_Vendor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameVendor" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Tovar_Maker">
+          <End Role="Maker" Type="Self.Maker" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maker">
+              <PropertyRef Name="ID_Maker" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="TovarMaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="ID_Type" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="TovarType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="ID_Vendor" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="TovarVendor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище KitchenUtensilsStoreBDModelContainer">
           <EntitySet Name="Maker" EntityType="Self.Maker" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -81,6 +129,22 @@
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tovar_Maker" Association="Self.FK_Tovar_Maker">
+            <End Role="Maker" EntitySet="Maker" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Type" Association="Self.FK_Tovar_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Vendor" Association="Self.FK_Tovar_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -93,6 +157,7 @@
           </Key>
           <Property Name="ID_Maker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameMaker" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tovar" Relationship="Self.FK_Tovar_Maker" FromRole="Maker" ToRole="Tovar" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -100,6 +165,7 @@
           </Key>
           <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameRole" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -115,19 +181,22 @@
           <Key>
             <PropertyRef Name="ID_Tovar" />
           </Key>
-          <Property Name="ID_Tovar" Type="Int32" Nullable="false" />
-          <Property Name="Articul" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Ed" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Sum" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="MaxRebate" Type="Int32" />
-          <Property Name="TovarMaker" Type="Int32" />
-          <Property Name="TovarVendor" Type="Int32" />
-          <Property Name="TovarType" Type="Int32" />
-          <Property Name="Rebate" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Tovar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Articul" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ed" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sum" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MaxRebate" Type="Int32" Nullable="false" />
+          <Property Name="TovarMaker" Type="Int32" Nullable="false" />
+          <Property Name="TovarVendor" Type="Int32" Nullable="false" />
+          <Property Name="TovarType" Type="Int32" Nullable="false" />
+          <Property Name="Rebate" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Maker" Relationship="Self.FK_Tovar_Maker" FromRole="Tovar" ToRole="Maker" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_Tovar_Type" FromRole="Tovar" ToRole="Type" />
+          <NavigationProperty Name="Vendor" Relationship="Self.FK_Tovar_Vendor" FromRole="Tovar" ToRole="Vendor" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
@@ -135,18 +204,20 @@
           </Key>
           <Property Name="ID_Type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tovar" Relationship="Self.FK_Tovar_Type" FromRole="Type" ToRole="Tovar" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID_User" />
           </Key>
-          <Property Name="ID_User" Type="Int32" Nullable="false" />
-          <Property Name="Familia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ima" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Otchot" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Otchot" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="UserRole" Type="Int32" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -154,8 +225,57 @@
           </Key>
           <Property Name="ID_Vendor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameVendor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tovar" Relationship="Self.FK_Tovar_Vendor" FromRole="Vendor" ToRole="Tovar" />
         </EntityType>
-        <EntityContainer Name="KitchenUtensilsStoreBD" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Tovar_Maker">
+          <End Role="Maker" Type="Self.Maker" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maker">
+              <PropertyRef Name="ID_Maker" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="TovarMaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="ID_Type" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="TovarType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovar_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="ID_Vendor" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="TovarVendor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KitchenUtensilsStoreDb" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Maker" EntityType="Self.Maker" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -163,13 +283,29 @@
           <EntitySet Name="Type" EntityType="Self.Type" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" />
+          <AssociationSet Name="FK_Tovar_Maker" Association="Self.FK_Tovar_Maker">
+            <End Role="Maker" EntitySet="Maker" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Type" Association="Self.FK_Tovar_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovar_Vendor" Association="Self.FK_Tovar_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище KitchenUtensilsStoreBDModelContainer" CdmEntityContainer="KitchenUtensilsStoreBD">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KitchenUtensilsStoreBDModelContainer" CdmEntityContainer="KitchenUtensilsStoreDb">
           <EntitySetMapping Name="Maker">
             <EntityTypeMapping TypeName="KitchenUtensilsStoreBDModel.Maker">
               <MappingFragment StoreEntitySet="Maker">

@@ -14,7 +14,16 @@ namespace KitchenUtensilsStore
     
     public partial class Vendor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Vendor()
+        {
+            this.Tovar = new HashSet<Tovar>();
+        }
+    
         public int ID_Vendor { get; set; }
         public string NameVendor { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tovar> Tovar { get; set; }
     }
 }
