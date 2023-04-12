@@ -23,6 +23,7 @@ namespace KitchenUtensilsStore
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content = new KitchenUtensilsStorePage();
         }
     }
 }

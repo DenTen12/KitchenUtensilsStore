@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\KitchenUtensilsStore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -69,6 +70,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
     </Compile>
+    <Compile Include="KitchenUtensilsStorePage.xaml.cs">
+      <DependentUpon>KitchenUtensilsStorePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Maker.cs">
       <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
     </Compile>
@@ -91,6 +95,10 @@
       <DependentUpon>BDKitchenUtensilsStore.tt</DependentUpon>
     </Compile>
     <Page Include="Autorization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KitchenUtensilsStorePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,6 +176,17 @@
       <DependentUpon>BDKitchenUtensilsStore.edmx</DependentUpon>
       <LastGenOutput>BDKitchenUtensilsStore.cs</LastGenOutput>
     </Content>
+    <Resource Include="Image\picture.jpg" />
+    <Resource Include="Image\T793T4.jpg" />
+    <Resource Include="Image\А112Т4.jpg" />
+    <Resource Include="Image\B736H6.jpg" />
+    <Resource Include="Image\D735T5.jpg" />
+    <Resource Include="Image\E732R7.jpg" />
+    <Resource Include="Image\F573T5.jpg" />
+    <Resource Include="Image\G387Y6.jpg" />
+    <Resource Include="Image\H384H3.jpg" />
+    <Resource Include="Image\K437E6.jpg" />
+    <Resource Include="Image\R836H6.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
