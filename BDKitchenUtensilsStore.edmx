@@ -54,17 +54,18 @@
           <Property Name="ID_Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameType" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "KitchenUtensilsStoreBD.dbo.User" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
         <EntityType Name="User">
-          <Property Name="ID_User" Type="int" />
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" Nullable="false" />
           <Property Name="Familia" Type="varchar" MaxLength="255" />
           <Property Name="Ima" Type="varchar" MaxLength="255" />
           <Property Name="Otchot" Type="varchar" MaxLength="255" />
           <Property Name="Login" Type="varchar" MaxLength="255" />
           <Property Name="Password" Type="varchar" MaxLength="255" />
           <Property Name="UserRole" Type="int" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="Vendor">
           <Key>
             <PropertyRef Name="ID_Vendor" />
@@ -78,6 +79,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tovar" EntityType="Self.Tovar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
@@ -134,6 +136,18 @@
           <Property Name="ID_Type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="Familia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Ima" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Otchot" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserRole" Type="Int32" />
+        </EntityType>
         <EntityType Name="Vendor">
           <Key>
             <PropertyRef Name="ID_Vendor" />
@@ -141,12 +155,13 @@
           <Property Name="ID_Vendor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameVendor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="BDKitchenUtensilsStore" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="KitchenUtensilsStoreBD" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Maker" EntityType="Self.Maker" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tovar" EntityType="Self.Tovar" />
           <EntitySet Name="Type" EntityType="Self.Type" />
+          <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" />
         </EntityContainer>
       </Schema>
@@ -154,7 +169,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище KitchenUtensilsStoreBDModelContainer" CdmEntityContainer="BDKitchenUtensilsStore">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KitchenUtensilsStoreBDModelContainer" CdmEntityContainer="KitchenUtensilsStoreBD">
           <EntitySetMapping Name="Maker">
             <EntityTypeMapping TypeName="KitchenUtensilsStoreBDModel.Maker">
               <MappingFragment StoreEntitySet="Maker">
@@ -206,6 +221,19 @@
               <MappingFragment StoreEntitySet="Type">
                 <ScalarProperty Name="ID_Type" ColumnName="ID_Type" />
                 <ScalarProperty Name="NameType" ColumnName="NameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="KitchenUtensilsStoreBDModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Ima" ColumnName="Ima" />
+                <ScalarProperty Name="Otchot" ColumnName="Otchot" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -26,12 +26,22 @@ namespace KitchenUtensilsStore
 
         private void Vhod_Click(object sender, RoutedEventArgs e)
         {
-
+            var login = TextBoxLogin.Text;
+            var password = TextBoxPassworc.Text;
+            var bd = new KitchenUtensilsStoreBD();
+            var user = bd.User.Where(w => w.Login == login && w.Password == password).FirstOrDefault();
+            if (user != null)
+            {
+                new MainWindow().Show();
+                this.Close();
+            }
+            else MessageBox.Show("Не верный Логин или Пароль!");
         }
 
         private void VhodGost_Click(object sender, RoutedEventArgs e)
         {
-
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }

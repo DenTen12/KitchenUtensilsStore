@@ -13,19 +13,19 @@ namespace KitchenUtensilsStore
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BDKitchenUtensilsStore : DbContext
+    public partial class KitchenUtensilsStoreBD : DbContext
     {
-        private static BDKitchenUtensilsStore _context;
+        private static KitchenUtensilsStoreBD _context;
 
-        internal static BDKitchenUtensilsStore GetContext()
-        {
-            if (_context == null)
-                _context = new BDKitchenUtensilsStore();
+
+        internal static KitchenUtensilsStoreBD GetContext()
+        { if (_context == null)
+                _context = new KitchenUtensilsStoreBD();
             return _context;
         }
 
-        public BDKitchenUtensilsStore()
-            : base("name=BDKitchenUtensilsStore")
+        public KitchenUtensilsStoreBD()
+            : base("name=KitchenUtensilsStoreBD")
         {
         }
     
@@ -39,6 +39,7 @@ namespace KitchenUtensilsStore
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tovar> Tovar { get; set; }
         public virtual DbSet<Type> Type { get; set; }
+        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Vendor> Vendor { get; set; }
     }
 }
